@@ -4,10 +4,12 @@
   "description": "(WIP) Responsive web app created to help students study textbooks using the SQ3R method.",
   "main": "app.js",
   "dependencies": {
+    "connect": "^3.4.1",
     "express": "^4.14.0"
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
