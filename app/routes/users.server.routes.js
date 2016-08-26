@@ -5,5 +5,15 @@
 var users = require('../../app/controllers/users.server.controller');
 
 module.exports = function(app) {
-    app.route('/users').post(users.create);
-}
+    //Standard POST and GET for /users
+    app.route('/users')
+        .post(users.create)
+        .get(users.list);
+
+    //Route to get user by ID
+    app.route('/users/:userId')
+        .get(users.read);
+
+    //Call userByID() before the userID parameter is used (such as above)
+    app.param('userId', users.userByID);
+};
