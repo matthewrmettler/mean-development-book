@@ -2,6 +2,7 @@
  * Created by Matt on 8/21/2016.
  */
 
+/** Import node modules **/
 var config = require('./config'),
     express = require('express'),
     morgan = require('morgan'),
@@ -9,6 +10,8 @@ var config = require('./config'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     session = require('express-session');
+
+/** Mongoose and mongodb setup **/
 
 module.exports = function() {
     var app = express();
@@ -41,6 +44,7 @@ module.exports = function() {
 
     /** Routing **/
     require('../app/routes/index.server.routes')(app);
+    require('../app/routes/users.server.routes')(app);
     app.use(express.static('./public'));
 
     return app;
