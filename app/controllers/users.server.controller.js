@@ -2,7 +2,7 @@
  * Created by Matt on 8/26/2016.
  */
 
-var User = require('mongoose').model('User');
+var User = new require('mongoose').model('User');
 
 /** Create a new User object. **/
 exports.create = function(req, res, next) {
@@ -40,9 +40,36 @@ exports.userByID = function(req, res, next, id) {
     }, function(err, user) {
         if (err) {
             return next(err);
-        } else {
+        } else if (user) {
             req.user = user;
             next();
+        } else {
+            next(new Error("Failed to load user."));
         }
     });
 };
+
+/** Update existing user **/
+exports.update = function(req, res, next) {
+    //For some reason, WebStorm can't resolve findByIdAndUpdate()
+    //noinspection JSUnresolvedFunction
+    User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
+        if (err) {
+            return next(err);
+        } else {
+            console.log("User ID " + req.user.id + " updated.");
+            res.json(user);
+        }
+    });
+};
+
+exports.delete = function(req, res, next) {
+    User.findByIdAndRemove(req.user.id, req.body, function(err, user) {
+        if (err) {
+            return next(err);
+        } else {
+            console.log("User ID " + req.user.id + " deleted.");
+            res.json(user);
+        }
+    })
+}

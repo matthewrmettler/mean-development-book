@@ -12,7 +12,9 @@ module.exports = function(app) {
 
     //Route to get user by ID
     app.route('/users/:userId')
-        .get(users.read);
+        .get(users.read)
+        .put(users.update)
+        .delete(users.delete);
 
     //Call userByID() before the userID parameter is used (such as above)
     app.param('userId', users.userByID);
