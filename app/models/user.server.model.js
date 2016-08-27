@@ -13,10 +13,14 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
     firstName: String,
     lastName: String,
-    email: String,
+    email: {
+        type: String,
+        index: true
+    },
     username: {
         type: String,
-        trim: true
+        trim: true,
+        unique: true
     },
     password: String,
     created: {
@@ -49,6 +53,12 @@ UserSchema.virtual('fullName')
         this.lastName = splitName[1] || "";
 });
 
+/** Static model methods **/
+UserSchema.statics
+    .findOneByUsername = function(username, callback) {
+        this.findOne({ username: new RegExp(username, 'i') }, callback);
+};
 
+/** Config the schema and create the model **/
 UserSchema.set('toJSON', { getters: true, virtuals: true});
 mongoose.model('User', UserSchema);
