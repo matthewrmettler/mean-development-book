@@ -15,17 +15,30 @@ var UserSchema = new Schema({
     lastName: String,
     email: {
         type: String,
-        index: true
+        index: true,
     },
     username: {
         type: String,
         trim: true,
-        unique: true
+        unique: true,
+        required: true
     },
-    password: String,
+    password: {
+        type: String,
+        validate: [
+            function(password) {
+                return password.length >= 6;
+            },
+            'Password should be at least 6 characters.'
+        ]
+    },
     created: {
         type: Date,
         default: Date.now()
+    },
+    role: {
+        type: String,
+        enum: ['Admin', 'Owner', 'User']
     },
     website: {
         type: String,
@@ -44,8 +57,7 @@ var UserSchema = new Schema({
 });
 
 /** Virtual attributes **/
-UserSchema.virtual('fullName')
-    .get(function() {
+UserSchema.virtual('fullName').get(function() {
         return this.firstName + " " + this.lastName;
     }).set(function(fullName) {
         var splitName = fullName.split(' ');
@@ -54,10 +66,23 @@ UserSchema.virtual('fullName')
 });
 
 /** Static model methods **/
-UserSchema.statics
-    .findOneByUsername = function(username, callback) {
+UserSchema.statics.findOneByUsername = function(username, callback) {
         this.findOne({ username: new RegExp(username, 'i') }, callback);
 };
+
+/** Middlware **/
+UserSchema.pre('save', function(next) {
+    this.wasNew = this.isNew;
+    next();
+});
+
+UserSchema.post('save', function(next) {
+    if(this.wasNew) {
+        console.log('A new user was created.');
+    } else {
+        console.log('A user updated its details.');
+    }
+});
 
 /** Config the schema and create the model **/
 UserSchema.set('toJSON', { getters: true, virtuals: true});
