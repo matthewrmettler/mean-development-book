@@ -20,5 +20,7 @@ module.exports = function() {
         });
     });
 
+    /** Passport strategies **/
     require('./strategies/local.js')();
+    require('./strategies/facebook.js')();
 };
