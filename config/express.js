@@ -10,7 +10,8 @@ var config = require('./config'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     session = require('express-session'),
-    passport = require('passport');
+    passport = require('passport'),
+    flash = require('connect-flash');
 
 /** Mongoose and mongodb setup **/
 
@@ -42,7 +43,8 @@ module.exports = function() {
     app.set('views', './app/views');
     app.set('view engine', 'ejs');
 
-    /** Passport **/
+    /** User Authentication **/
+    app.use(flash());
     app.use(passport.initialize());
     app.use(passport.session());
 

@@ -64,7 +64,7 @@ UserSchema.pre('save', function(next) {
     this.wasNew = this.isNew;
 
     if (this.password) {
-        this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
+        this.salt = crypto.randomBytes(16).toString('base64');
         this.password = this.hashPassword(this.password);
     }
 
@@ -72,7 +72,7 @@ UserSchema.pre('save', function(next) {
 });
 
 UserSchema.methods.hashPassword = function(password) {
-    return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
+    return crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('base64');
 };
 
 UserSchema.methods.authenticate = function(password) {
