@@ -146,6 +146,7 @@ exports.signout = function(req, res) {
 };
 
 exports.saveOAuthUserProfile = function(req, profile, done) {
+    var _this = this;
     User.findOne({
         provider: profile.provider,
         providerId: profile.providerId

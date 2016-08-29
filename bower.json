@@ -1,0 +1,21 @@
+{
+  "name": "mean-development-book",
+  "description": "(WIP) Working through the MEAN Web Development book Amos Haviv and PACKT Publishing",
+  "main": "server.js",
+  "authors": [
+    "Matthew Mettler"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/matthewrmettler/mean-development-book",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}
