@@ -3,10 +3,16 @@
  */
 
 /** Manual Angular Boostrapping **/
-var mainApplicationModuleName = 'mean';
+var myApp = 'mean';
 
-var mainApplicationModule = angular.module(mainApplicationModuleName, ['example']);
+var mainApplicationModule = angular.module(myApp, ['ngRoute', 'example']);
+
+/** Use hashbang for better SEO **/
+mainApplicationModule.config(['$locationProvider',
+   function($locationProvider) {
+      $locationProvider.hashPrefix('!');
+   }]);
 
 angular.element(document).ready(function() {
-   angular.bootstrap(document, [mainApplicationModuleName])
+   angular.bootstrap(document, [myApp])
 });

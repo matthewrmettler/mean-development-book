@@ -17,17 +17,21 @@
             <a href="/signin">Signin</a>
         <% } %>
 
-        <section ng-include="'example/views/example.client.view.html'"></section>
+        <section ng-view></section>
 
         <!--            -->
         <!--  Scripts   -->
         <!--            -->
 
-        <!-- Angular Core -->
+        <!-- Angular Libraries -->
         <script type="text/javascript" src="/lib/angular/angular.js"></script>
+        <script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
         <!-- Angular Custom -->
-        <script type="text/javascript" src="/application.js"></script>
         <script type="text/javascript" src="/example/example.client.module.js"></script>
+        <script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
+        <script type="text/javascript" src="/example/config/example.client.routes.js"></script>
+        <!-- Angular Application -->
+        <script type="text/javascript" src="/application.js"></script>
 
         <!-- Facebook SDK -->
         <script type="text/javascript" src="/js/facebookSdk.js"></script>
