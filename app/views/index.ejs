@@ -8,23 +8,29 @@
         </title>
     </head>
     <body>
-        <img src="img/logo.png" alt="Test logo">
         <h1><%= title %></h1>
         <% if ( userFullName ) { %>
-        <h2>Hello <%=userFullName%> </h2>
-        <a href="/signout">Sign out</a>
+            <h2>Hello <%=userFullName%> </h2>
+            <a href="/signout">Sign out</a>
         <% } else { %>
-        <a href="/signup">Signup</a>
-        <a href="/signin">Signin</a>
+            <a href="/signup">Signup</a>
+            <a href="/signin">Signin</a>
         <% } %>
-        <div
-                class="fb-like"
-                data-share="true"
-                data-width="450"
-                data-show-faces="true">
-        </div>
+
+        <section>
+            <input type="text" id="text1" ng-model="name">
+            <input type="text" id="text2" ng-model="name">
+        </section>
 
     </body>
+
+    <!-- Angular -->
+    <!-- Core -->
+    <script type="text/javascript" src="/lib/angular/angular.js"></script>
+    <!-- Custom -->
+    <script type="text/javascript" src="/application.js"></script>
+
+
     <!-- Facebook SDK -->
     <script>
         window.fbAsyncInit = function() {
