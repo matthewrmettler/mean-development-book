@@ -17,36 +17,22 @@
             <a href="/signin">Signin</a>
         <% } %>
 
-        <section>
-            <input type="text" id="text1" ng-model="name">
-            <input type="text" id="text2" ng-model="name">
-        </section>
+        <section ng-include="'example/views/example.client.view.html'"></section>
 
+        <!--            -->
+        <!--  Scripts   -->
+        <!--            -->
+
+        <!-- Angular Core -->
+        <script type="text/javascript" src="/lib/angular/angular.js"></script>
+        <!-- Angular Custom -->
+        <script type="text/javascript" src="/application.js"></script>
+        <script type="text/javascript" src="/example/example.client.module.js"></script>
+
+        <!-- Facebook SDK -->
+        <script type="text/javascript" src="/js/facebookSdk.js"></script>
     </body>
 
-    <!-- Angular -->
-    <!-- Core -->
-    <script type="text/javascript" src="/lib/angular/angular.js"></script>
-    <!-- Custom -->
-    <script type="text/javascript" src="/application.js"></script>
 
 
-    <!-- Facebook SDK -->
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '1785007371742043',
-                xfbml      : true,
-                version    : 'v2.7'
-            });
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
 </html>
