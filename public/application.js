@@ -5,7 +5,7 @@
 /** Manual Angular Boostrapping **/
 var myApp = 'mean';
 
-var mainApplicationModule = angular.module(myApp, ['ngRoute', 'example']);
+var mainApplicationModule = angular.module(myApp, ['ngRoute', 'users', 'example']);
 
 /** Use hashbang for better SEO **/
 mainApplicationModule.config(['$locationProvider',
@@ -13,6 +13,10 @@ mainApplicationModule.config(['$locationProvider',
       $locationProvider.hashPrefix('!');
    }]);
 
-angular.element(document).ready(function() {
-   angular.bootstrap(document, [myApp])
+   if (window.location.hash === '#_=_') {
+      window.location.hash = '#!';
+   }
+
+   angular.element(document).ready(function() {
+      angular.bootstrap(document, [myApp])
 });
